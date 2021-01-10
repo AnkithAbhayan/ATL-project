@@ -1,3 +1,6 @@
+import json
+import os
+import sys
 def addition():
     first_number = int(input("enter first number:"))
     second_number = int(input("enter second number:"))
@@ -18,3 +21,33 @@ def multiplication():
     second_number = int(input("enter second number:"))
     answer = first_number*second_number
     print("the product is :"+str(answer))
+def load_database():
+    path = find_database_path()
+    if os.path.exists(path) == False:
+        with open(path,"w") as Jsonfile:
+            json.dump({"tdata":{}},Jsonfile,indent=4)
+    with open(path,"r") as Jsonfile:
+        data = json.load(Jsonfile)
+    tdata = data["tdata"]
+    with open(path,"w") as Jsonfile:
+        json.dump(data,Jsonfile,indent=4)
+    return tdata
+def save_database(tdata):
+    path = find_database_path()
+    data = {"tdata":tdata}
+    with open(path,"w") as Jsonfile:
+        json.dump(data,Jsonfile,indent=4)
+def find_database_path():
+    relative_path = sys.argv[0]
+    letter_list = [x for x in relative_path]
+    slashindex = []
+    lix = ["\ "]   
+    if lix[0][0] not in letter_list:
+        return "database.json"
+    else:
+        for item in letter_list:
+            if item == lix[0][0]:
+                indexx = letter_list.index(lix[0][0])
+                slashindex.append(indexx)
+                letter_list[indexx] = "a"
+        return relative_path[0:slashindex[-1]]+"\database.json"
