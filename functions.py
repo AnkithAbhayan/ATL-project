@@ -1,6 +1,7 @@
 import json
 import os
 import sys
+import requests
 def addition():
     first_number = int(input("enter first number:"))
     second_number = int(input("enter second number:"))
@@ -51,3 +52,15 @@ def find_database_path():
                 slashindex.append(indexx)
                 letter_list[indexx] = "a"
         return relative_path[0:slashindex[-1]]+"\database.json"
+def find_definition():
+    name = input("enter the word you want to find the definition of:")
+    try:
+        response = requests.get("https://api.dictionaryapi.dev/api/v2/entries/en/"+name)
+        data = json.loads(response.text)
+    except:
+        print("internet error")
+    try:
+        for item in data[0]["meanings"]:
+            print(item["definitions"][0]["definition"])
+    except KeyError:
+        print("the word you entered is invalid")

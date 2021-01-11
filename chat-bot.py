@@ -3,11 +3,13 @@ from functions import *
 print("Hi, I am a chat bot .You can ask me anything but I'm not sure I can answer all questions")
 print("enter 'help' for all commands")
 print("enter 'stop' to stop")
+
 function_caller = {
     "add numbers":addition,
     "subtract numbers":subtraction,
     "divide numbers":division,
-    "multiply numbers":multiplication
+    "multiply numbers":multiplication,
+    "find definition":find_definition
 }
 tdata = load_database()
 functions = ["add numbers","subtract numbers","divide numbers","multiply numbers"]
@@ -34,8 +36,10 @@ while True:
         print("I don't know the answer")
         print("do you know the answer? if yes - please enter the answer. or enter 'sorry'")
         answer = input("your answer:")
-        print("thankyou so much for the answer")
-        tdata.update({user_question:answer})
-        print(tdata)
+        if answer == "sorry":
+            print("ok,that's alright")
+        else:
+            print("thankyou so much for the answer")
+            tdata.update({user_question:answer})
     print()
 save_database(tdata)
