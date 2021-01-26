@@ -33,13 +33,19 @@ while True:
             print("ok thankyou")
         tdata[user_question] = answer
     else:
-        print("I don't know the answer")
-        print("do you know the answer? if yes - please enter the answer. or enter 'sorry'")
-        answer = input("your answer:")
-        if answer == "sorry":
-            print("ok,that's alright")
+        if user_question[0:11] == "daily cases":
+            country = user_question.split()[2]
+            r = requests.get("https://api.covid19api.com/dayone/country/"+country+"/status/confirmed")
+            data = json.loads(r.text)
+            print("number of new cases reported today in "+country+" = "+str(data[-1]["Cases"]))
         else:
-            print("thankyou so much for the answer")
-            tdata.update({user_question:answer})
+            print("I don't know the answer")
+            print("do you know the answer? if yes - please enter the answer. or enter 'sorry'")
+            answer = input("your answer:")
+            if answer == "sorry":
+                print("ok,that's alright")
+            else:
+                print("thankyou so much for the answer")
+                tdata.update({user_question:answer})
     print()
 save_database(tdata)
