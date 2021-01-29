@@ -2,7 +2,10 @@
 A chat bot made with python for ATL project  
 Contributors:   
 Ankith  
-  
+
+# Requirements - 
+- python 3.7 or newer  
+- git  
 # Installation steps:
 ```bash
 git clone "https://github.com/AnkithAbhayan/ATL-project" "chat-bot"/
