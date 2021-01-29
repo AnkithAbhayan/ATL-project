@@ -64,3 +64,28 @@ def find_definition():
             print(item["definitions"][0]["definition"])
     except KeyError:
         print("the word you entered is invalid")
+def putcommas(string):
+    array = list(string)
+    count = 0
+    newarray = []
+    array.reverse()
+    for i in range(1,len(array)+1):
+        if i%3==0:
+            newarray.append(array[i-3:i])
+    count = 0
+    for item in newarray:
+        for number in item:
+            count += 1
+    if count != len(array):
+        difference = len(array)-count
+        newarray.append(array[len(array)-difference:len(array)])
+    string = ""
+    for item in newarray:
+        item.reverse()
+    newarray.reverse()
+    for i in range(len(newarray)):
+        for number in newarray[i]:
+            string += number
+        if i != len(newarray)-1:
+            string += ","
+    return string

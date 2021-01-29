@@ -33,11 +33,17 @@ while True:
             print("ok thankyou")
         tdata[user_question] = answer
     else:
-        if user_question[0:11] == "daily cases":
-            country = user_question.split()[2]
+        array = user_question.split()
+        if array[0:2] == ["total","cases"]:
+            country = array[2]
             r = requests.get("https://api.covid19api.com/dayone/country/"+country+"/status/confirmed")
             data = json.loads(r.text)
-            print("number of new cases reported today in "+country+" = "+str(data[-1]["Cases"]))
+            print("total cases in "+country+" = "+putcommas(str(data[-1]["Cases"])))
+        elif array[0:2] == ["new","cases"]:
+            country = array[2]
+            r = requests.get("https://api.covid19api.com/dayone/country/"+country+"/status/confirmed")
+            data = json.loads(r.text)
+            print("new cases (daily) in "+country+" = "+putcommad(str(data[-1]["Cases"]-data[-2]["Cases"])))   
         else:
             print("I don't know the answer")
             print("do you know the answer? if yes - please enter the answer. or enter 'sorry'")
