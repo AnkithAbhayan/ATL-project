@@ -1,5 +1,5 @@
 # ATL-project
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)  
 A chat bot made with python for ATL project  
 Contributors:   
 Ankith  
