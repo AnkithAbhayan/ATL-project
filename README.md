@@ -18,6 +18,7 @@ cd "chat-bot"/
 python -m pip install -U requirements.txt
 ```
 Installation done!  
+another method would be to directly download it from that download button on top (i.e If you are a caveman)
   
 ## How to run?
 ```bash
