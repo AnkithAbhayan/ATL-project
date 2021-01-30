@@ -2,9 +2,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Lint & Test][1]][2]
 [![Build][3]][4]
-[![Deploy][5]][6]
-[![Coverage Status](https://coveralls.io/repos/github/python-discord/bot/badge.svg)](https://coveralls.io/github/python-discord/bot)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)  
+[![Deploy][5]][6]  
 A chat bot made with python for ATL project  
 Contributors:   
 Ankith  
