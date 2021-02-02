@@ -1,4 +1,5 @@
 import json
+from misc import functions
 from functions import *
 print("Hi, I am a chat bot .You can ask me anything but I'm not sure I can answer all questions")
 print("enter 'help' for all commands")
@@ -51,7 +52,7 @@ while True:
             if answer == "sorry":
                 print("ok,that's alright")
             else:
-                print("thankyou so much for the answer")
+                print("thank you so much for the answer")
                 tdata.update({user_question:answer})
     print()
 save_database(tdata)
