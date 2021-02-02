@@ -1,5 +1,4 @@
 import json
-from misc import functions
 from functions import *
 print("Hi, I am a chat bot .You can ask me anything but I'm not sure I can answer all questions")
 print("enter 'help' for all commands")
@@ -44,7 +43,7 @@ while True:
             country = array[2]
             r = requests.get("https://api.covid19api.com/dayone/country/"+country+"/status/confirmed")
             data = json.loads(r.text)
-            print("new cases (daily) in "+country+" = "+putcommad(str(data[-1]["Cases"]-data[-2]["Cases"])))   
+            print("new cases (daily) in "+country+" = "+putcommas(str(data[-1]["Cases"]-data[-2]["Cases"])))   
         else:
             print("I don't know the answer")
             print("do you know the answer? if yes - please enter the answer. or enter 'sorry'")
