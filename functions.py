@@ -1,69 +1,71 @@
 import json
 import os
+import pathlib
 import sys
 import requests
-def addition():
-    first_number = int(input("enter first number:"))
-    second_number = int(input("enter second number:"))
-    answer = first_number+second_number
-    print("the sum is :"+str(answer))
-def subtraction():
-    first_number = int(input("enter first number:"))
-    second_number = int(input("enter second number:"))
-    answer = first_number-second_number
-    print("the difference is :"+str(answer))
-def division():
-    first_number = int(input("enter divident:"))
-    second_number = int(input("enter divisor number:"))
-    answer = first_number/second_number
-    print("the answer is :"+str(answer))
-def multiplication():
-    first_number = int(input("enter first number:"))
-    second_number = int(input("enter second number:"))
-    answer = first_number*second_number
-    print("the product is :"+str(answer))
-def load_database():
-    path = find_database_path()
-    if os.path.exists(path) == False:
-        with open(path,"w") as Jsonfile:
-            json.dump({"tdata":{}},Jsonfile,indent=4)
-    with open(path,"r") as Jsonfile:
-        data = json.load(Jsonfile)
-    tdata = data["tdata"]
-    with open(path,"w") as Jsonfile:
-        json.dump(data,Jsonfile,indent=4)
-    return tdata
-def save_database(tdata):
-    path = find_database_path()
-    data = {"tdata":tdata}
-    with open(path,"w") as Jsonfile:
-        json.dump(data,Jsonfile,indent=4)
-def find_database_path():
-    relative_path = sys.argv[0]
-    letter_list = [x for x in relative_path]
-    slashindex = []
-    lix = ["\ "]   
-    if lix[0][0] not in letter_list:
-        return "database.json"
-    else:
-        for item in letter_list:
-            if item == lix[0][0]:
-                indexx = letter_list.index(lix[0][0])
-                slashindex.append(indexx)
-                letter_list[indexx] = "a"
-        return relative_path[0:slashindex[-1]]+"\database.json"
-def find_definition():
-    name = input("enter the word you want to find the definition of:")
-    try:
-        response = requests.get("https://api.dictionaryapi.dev/api/v2/entries/en/"+name)
-        data = json.loads(response.text)
-    except:
-        print("internet error")
-    try:
-        for item in data[0]["meanings"]:
-            print(item["definitions"][0]["definition"])
-    except KeyError:
-        print("the word you entered is invalid")
+from time import sleep
+
+def credits(user_input):
+	fullpath = str(pathlib.Path(__file__).parent.absolute())+"/data.json"
+	with open(fullpath,"r") as JsonFile:
+		data = json.load(JsonFile)
+	output = data["credits"]
+	print("\n".join(output))
+	
+def introduction():
+	fullpath = str(pathlib.Path(__file__).parent.absolute())+"/data.json"
+	with open(fullpath,"r") as JsonFile:
+		data = json.load(JsonFile)
+	output = data["introductory_message"]
+	print("\n".join(output))
+
+def total_cases(user_input):
+	array = user_input.split()
+	if len(array) == 2:
+		print("Invalid Argument. Enter a country name as an argument.")
+		return
+	country = " ".join(array[2:len(array)])
+	try:
+		r = requests.get("https://api.covid19api.com/dayone/country/"+country+"/status/confirmed")
+		data = json.loads(r.text)
+		totalcases = str(data[-1]["Cases"])
+		printable = ["total cases in "+country+" = "+putcommas(totalcases)]
+		print("\n    "+"\n    ".join(printable))
+	except:
+		print("Invalid country name or Weak Internet connection.")
+		
+def new_cases(user_input):
+	array = user_input.split()
+	if len(array) == 2:
+		print("Invalid Argument. Enter a country name as an argument.")
+		return
+	country = " ".join(array[2:len(array)])
+	try:
+		r = requests.get("https://api.covid19api.com/dayone/country/"+country+"/status/confirmed")
+		data = json.loads(r.text)
+		newcases = str(data[-1]["Cases"]-data[-2]["Cases"])
+		printable = ["new cases (daily) in "+country+" = "+putcommas(newcases)]
+		print("\n    "+"\n    ".join(printable))  
+	except:
+		print("Invalid country name or Weak Internet connection.")
+		
+def find_definition(user_input):
+	array = user_input.split()
+	if len(array) == 1:
+		print("Invalid Arugment. Enter a word as an argument.")
+		return
+	name = array[1]
+	try:
+		response = requests.get("https://api.dictionaryapi.dev/api/v2/entries/en/"+name)
+		data = json.loads(response.text)
+	except:
+		print("Weak Internet Connection.")
+		return
+	try:
+		for item in data[0]["meanings"]:
+			print(item["definitions"][0]["definition"])
+	except KeyError:
+		print("the word you entered is invalid")
 def putcommas(string):
     array = list(string)
     count = 0
@@ -89,3 +91,31 @@ def putcommas(string):
         if i != len(newarray)-1:
             string += ","
     return string
+    
+def help_info(user_input):
+	fullpath = str(pathlib.Path(__file__).parent.absolute())+"/data.json"
+	array = user_input.split()
+	if len(array) > 2:
+		print("Too many Arguments. Enter 'help' for more info.")
+		return
+	with open(fullpath,"r") as JsonFile:
+		data = json.load(JsonFile)
+	if len(array) == 1:
+		help_msg = data["help"]["full_help"]
+	else:
+		command = array[1]
+		if data["help"]["specific_help"].get(command):
+			help_msg = data["help"]["specific_help"][command]
+		else:
+			print(f"'{command}' is not a valid argument. Enter 'help' for more info")
+			return
+	print("\n    "+"\n    ".join(help_msg))
+	
+def stop(user_input):
+	print("Stopping", end="", flush=True)
+	for i in range(3):
+		sleep(0.05)
+		print(".", end="", flush=True)
+	sleep(0.05)
+	print(".", flush=True)
+	sys.exit()
