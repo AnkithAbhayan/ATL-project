@@ -47,12 +47,12 @@ def parse(user_input):
     usermod_palette = {
         "-l":login,
         "-login":login,
-        "-n":makenewaccount
+        "-n":makenewaccount,
         "-new":makenewaccount,
         "-d":deleteaccount,
         "-delete":deleteaccount,
         "-cp":changepassword,
-        "-changepassword":changepassword
+        "-changepassword":changepassword,
         "-cn":changename,
         "-changename":changename
     }
