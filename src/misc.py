@@ -31,7 +31,7 @@ def help_info(user_input):
         if data["help"]["specific_help"].get(command):
 	        help_msg = data["help"]["specific_help"][command]
         else:
-	        print(f"'{command}' is not a valid argument. Enter 'help' for more info")
+	        print(f"'{command}' is not a valid argument. Enter 'help help' for more info")
 	        return
     print("\n    "+"\n    ".join(help_msg))
 
