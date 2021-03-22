@@ -3,11 +3,16 @@ import os
 import pathlib
 import requests
 
+fullpath = str(pathlib.Path(__file__).parent.absolute())+"/data.json"
+
 def total_cases(user_input):
+    with open(fullpath,"r") as JsonFile:
+        data = json.load(JsonFile)
     array = user_input.split()
     if len(array) == 1:
-	    print("Invalid Argument. Enter a country name as an argument.")
-	    return
+        print("Invalid Argument. Enter a country name as an argument.")
+        print("\n    "+"\n    ".join(data["help"]["specific_help"]["total_cases"]))
+        return
     country = " ".join(array[1:len(array)])
     try:
         r = requests.get("https://api.covid19api.com/dayone/country/"+country+"/status/confirmed")
@@ -19,10 +24,13 @@ def total_cases(user_input):
         print("Invalid country name or Weak Internet connection.")
 
 def new_cases(user_input):
+    with open(fullpath,"r") as JsonFile:
+        data = json.load(JsonFile)
     array = user_input.split()
     if len(array) == 1:
         print("Invalid Argument. Enter a country name as an argument.")
-        return
+        print("\n    "+"\n    ".join(data["help"]["specific_help"]["new_cases"]))
+        return     
     country = " ".join(array[1:len(array)])
     try:
         r = requests.get("https://api.covid19api.com/dayone/country/"+country+"/status/confirmed")
@@ -34,10 +42,13 @@ def new_cases(user_input):
         print("Invalid country name or Weak Internet connection.")
 
 def find_definition(user_input):
+    with open(fullpath,"r") as JsonFile:
+        data = json.load(JsonFile)
     array = user_input.split()
     if len(array) == 1:
-	    print("Invalid Arugment. Enter a word as an argument.")
-	    return
+        print("Invalid Arugment. Enter a word as an argument.")
+        print("\n    "+"\n    ".join(data["help"]["specific_help"]["find_definition"]))
+        return
     name = array[1]
     try:
 	    response = requests.get("https://api.dictionaryapi.dev/api/v2/entries/en/"+name)
