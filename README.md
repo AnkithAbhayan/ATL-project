@@ -3,7 +3,7 @@
 [![Lint & Test][1]][2]
 [![Build][3]][4]
 [![Deploy][5]][6]  
-A chat bot made with python for ATL Marathon
+A chat bot made with python for ATL Marathon  
 Contributors:   
 Ankith  
 
