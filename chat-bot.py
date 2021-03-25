@@ -1,8 +1,6 @@
 from src import functions,misc,usermod
 import pathlib
 
-misc.introduction()
-user = usermod.authenticate()
 command_palette = {
     "help":misc.help_info,
     "stop":misc.stop,
@@ -13,12 +11,17 @@ command_palette = {
     "usermod":usermod.parse
 }
 
+misc.introduction()
+user = usermod.authenticate()
+
 while True:
+    user = usermod.authenticate()
     user_question = input(f"{user}$ ")
+    if misc.parse(user_question,command_palette):
+        print()
+        continue
     if command_palette.get(user_question.split()[0]):
         command_palette[user_question.split()[0]](user_question)  
-    elif command_palette.get(" ".join(user_question.split()[0:2])):
-    	command_palette[" ".join(user_question.split()[0:2])](user_question)
     else:
         print("You entered an unknown command. Enter 'help' for more info")
     print()

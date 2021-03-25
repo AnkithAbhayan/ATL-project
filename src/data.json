@@ -18,16 +18,17 @@
             "Written by Ankith Abhayan."
         ],
         "specific_help": {
-        	"help":[
-        		"Command: help",
-        		"Displays a help message based on a particular command or all commands.",
-        		"",
-        		"Usage: help [command]",
-        		"Note: [command] argument is optional. This leads to the output of a",
-        		"      help message of all commands.",
-        		"the [command] argument is the name of a command.",
-        		"Enter 'help' for a short list of all commands"
-        	],
+            "help": [
+                "Command: help",
+                "Displays a help message based on a particular command or all commands.",
+                "",
+                "Usage: help [command]",
+                "Note: [command] argument is optional. This leads to the output of a",
+                "      help message of all commands.",
+                "",
+                "the [command] argument is the name of a command.",
+                "Enter 'help' for a short list of all commands"
+            ],
             "stop": [
                 "Command: stop",
                 "Stops the execution of the chatbot.",
@@ -64,33 +65,33 @@
                 "",
                 "Usage: credits"
             ],
-			"usermod":[
-				"Command: usermod",
-				"Modify/add/delete items in the user registry.",
-				"",
-				"Usage: usermod [args] [safety]",
-				"Note: 'usermod' only takes in 2 args at a time. 1 arguement from [args] and",
-				"       another from [safety]. the default of [safety] is set to -safe (-s);",
-				"       unless the user enters another argument -force (-f).",
-				"",
-				"[args]:",
-				"[-l]    also known as -login. This changes the current user by logging into a",
-				"        new one.",
-				"",
-				"[-n]    also known as -new. This lets you create a new account.",
-				"[-d]    also known as -delete. This deletes the currently logged in account.",
-				"",
-				"[-cp]   also known as -changepass. This lets you change the password of the",
-				"        currently logged in user.",
-				"[-cn]   also known as -changename. This lets you change the name of the",
-				"        currently logged in user.",
-				"",
-				"[safety]",
-				"[-f]    also known as -force. This executes a command in sudo mode (doesnt ask",
-				"        the user again whether something has to be done or not).",
-				"[-s]    also known as -safe. This executes a command in normal mode and asks the",
-				"        user a y/n question before doing anything unchangeable."
-			]
+            "usermod": [
+                "Command: usermod",
+                "Modify/add/delete items in the user registry.",
+                "",
+                "Usage: usermod [args] [safety]",
+                "Note: 'usermod' only takes in 2 args at a time. 1 arguement from [args] and",
+                "       another from [safety]. the default of [safety] is set to -safe (-s);",
+                "       unless the user enters another argument -force (-f).",
+                "",
+                "[args]:",
+                "[-l]    also known as -login. This changes the current user by logging into a",
+                "        new one.",
+                "",
+                "[-n]    also known as -new. This lets you create a new account.",
+                "[-d]    also known as -delete. This deletes the currently logged in account.",
+                "",
+                "[-cp]   also known as -changepass. This lets you change the password of the",
+                "        currently logged in user.",
+                "[-cn]   also known as -changename. This lets you change the name of the",
+                "        currently logged in user.",
+                "",
+                "[safety]",
+                "[-f]    also known as -force. This executes a command in sudo mode (doesnt ask",
+                "        the user again whether something has to be done or not).",
+                "[-s]    also known as -safe. This executes a command in normal mode and asks the",
+                "        user a y/n question before doing anything unchangeable."
+            ]
         }
     },
     "introductory_message": [
@@ -104,7 +105,7 @@
     ],
     "users": {
         "ankith": {
-            "password": "waka9373"
+            "password": "ankith"
         }
     },
     "current_user": "ankith"

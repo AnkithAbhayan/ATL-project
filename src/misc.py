@@ -36,6 +36,7 @@ def help_info(user_input):
     print("\n    "+"\n    ".join(help_msg))
 
 def stop(user_input):
+    parsed = user_input.split()
     print("Stopping", end="", flush=True)
     for i in range(3):
 	    sleep(0.05)
@@ -43,3 +44,12 @@ def stop(user_input):
     sleep(0.05)
     print(".", flush=True)
     sys.exit()
+
+def parse(user_input,command_palette):
+    parsed = user_input.split()
+    if not user_input:
+        return True
+    elif "--help" in parsed and command_palette.get(parsed[0]):
+        help_info(f"help {parsed[0]}")
+        return True
+    return False
