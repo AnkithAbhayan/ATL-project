@@ -18,7 +18,6 @@ while True:
     user = usermod.authenticate()
     user_question = input(f"{user}$ ")
     if misc.parse(user_question,command_palette):
-        print()
         continue
     if command_palette.get(user_question.split()[0]):
         command_palette[user_question.split()[0]](user_question)  

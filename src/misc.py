@@ -47,9 +47,10 @@ def stop(user_input):
 
 def parse(user_input,command_palette):
     parsed = user_input.split()
-    if not user_input:
-        return True
-    elif "--help" in parsed and command_palette.get(parsed[0]):
+    if "--help" in parsed and command_palette.get(parsed[0]):
         help_info(f"help {parsed[0]}")
+        print()
+        return True
+    elif not parsed:
         return True
     return False
