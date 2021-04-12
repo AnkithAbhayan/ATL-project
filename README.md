@@ -8,7 +8,7 @@ Contributors:
 Ankith  
 
 ## Requirements - 
-- python 3.7 or newer  
+- python 3.8+  
 - git (optional) 
 
 ## Installation steps:
